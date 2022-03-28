@@ -6,24 +6,28 @@ export const GET_POKEMON = 'GET_POKEMON';
 
 let urlPokemons= 'http://localhost:3000/pokemons'
 
-export const getAllPokemons = () => dispatch => {
+export const getAllPokemons =  () => async dispatch => {
+   
+    const pokemones = await fetch(urlPokemons)
+    const res = await pokemones.json()
     return (
-        fetch(urlPokemons)
-        .then(respuesta=> respuesta.json())
-        .then( data => dispatch({
+        
+        dispatch({
             type : GET_ALL_POKEMONS,
-            payload : data
-    })))
+            payload : res
+    }))
 };
 
-export const getPokemon = (id) => dispatch => {
+export const getPokemon =  (id) => async dispatch => {
+   
+    const pokemones = await fetch(urlPokemons)
+    const res = await pokemones.json()
     return (
-        fetch(urlPokemons+"/"+id)
-        .then(respuesta=> respuesta.json())
-        .then( data => dispatch({
-            type : GET_POKEMON,
-            payload : data
-    })))
+        
+        dispatch({
+            type : GET_ALL_POKEMONS,
+            payload : res
+    }))
 };
 
 let id = 40;
