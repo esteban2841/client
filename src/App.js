@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-      <Route exact path={"/"} component={LandingPage}></Route>
-      <Route exact path={"/pokemons"} component={Pokemons}></Route>
+      <Route exact path={"/"} element={<LandingPage/>}></Route>
+      <Route exact path={"/pokemons"} element={<Pokemons/>}></Route>
 
       </Routes>
       
