@@ -8,13 +8,14 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+    console.log(action.payload)
     switch(action.type) {
         case GET_ALL_POKEMONS :
-        return { ...state, houses : action.payload }
+        return { ...state, pokemons : action.payload }
         case GET_POKEMON :
-        return { ...state, house : action.payload }
+        return { ...state, pokemon : action.payload }
         case CREATE_POKEMON:
-        return { ...state, houses : state.houses.concat(action.payload)}
+        return { ...state, pokemons : state.pokemons.concat(action.payload)}
        default : return state
     };
 };
