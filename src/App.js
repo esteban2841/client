@@ -1,4 +1,8 @@
 import './App.css';
+import {Route, Routes} from "react-router-dom"
+// import NavBar from './components/Nav';
+import LandingPage from './components/LandingPage.jsx';
+import Pokemons from './components/Pokemons.jsx';
 
 function App() {
 
@@ -7,7 +11,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Henry Pokemon</h1>
+      <Routes>
+      <Route exact path={"/"} component={LandingPage}></Route>
+      <Route exact path={"/pokemons"} component={Pokemons}></Route>
+
+      </Routes>
+      
     </div>
   );
 }
