@@ -8,7 +8,7 @@ export default function LandingPage (){
     return (
         <div>
             <h1>this is the landing page</h1>
-            <img src="../public/LandingPageImg.jpg" alt="" />
+            <img src="https://p4.wallpaperbetter.com/wallpaper/283/550/399/pokemon-1920x1080-anime-pokemon-hd-art-wallpaper-preview.jpg" alt="" />
             <button><Link to={"/pokemons"}>poke</Link></button>
         </div>
     )

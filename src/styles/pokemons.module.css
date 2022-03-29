@@ -1,0 +1,25 @@
+html,body{
+    margin: 0
+}
+
+.mainContainer{
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.cardsContainer{
+    width: 450px;
+    height: 500px;
+    border-style: outset;
+    padding-left: 20px;
+    border-radius: 30px;
+}
+.cardImg{
+    height: 400px;
+    width: 400px;
+}

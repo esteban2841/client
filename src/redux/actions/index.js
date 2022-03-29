@@ -17,14 +17,18 @@ export const getAllPokemons =   () => async dispatch => {
     })
 };
 
-export const getPokemon =  (id) => async dispatch => {
+export const getPokemon =  (name) => async dispatch => {
    
-    const pokemones = await fetch(urlPokemons)
+    const pokemones = await fetch(urlPokemons + "?name="+name)
     const res = await pokemones.json()
+    
+    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
+
+
     return (
         
         dispatch({
-            type : GET_ALL_POKEMONS,
+            type : GET_POKEMON,
             payload : res
     }))
 };

@@ -1,8 +1,8 @@
 import React, { useEffect} from "react";
 import { getAllPokemons } from '../../src/redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
-
-
+import pokeStyles from "../styles/pokemons.module.css"
+import SearchBar from "./SearchBar";
 
 export default function Pokemons (){
     
@@ -25,19 +25,30 @@ export default function Pokemons (){
     
     return(
         <div>
-            {
-                pokemons.map(pokemon=>{
-                    return (
-                        <div>
-                            <img src={pokemon.img} alt="" />
-                            <p>{pokemon.name}</p>
 
-                        </div>
+            <header>
+                <SearchBar/>
+            </header>
+            <div className={pokeStyles.mainContainer}>
+                
+                {
+                    pokemons.map(pokemon=>{
+                        
+                        return (
+                            <div>
 
-                    )
-                })
-            }
-            
+                                <div id={pokemon.id} className={pokeStyles.cardsContainer}>
+                                    <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
+                                    <p>{pokemon.name}</p>
+                                    
+                                </div>
+                            </div>
+
+                        )
+                    })
+                }
+                
+            </div>
         </div>
     )
     
