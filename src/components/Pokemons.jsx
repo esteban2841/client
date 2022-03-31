@@ -3,12 +3,14 @@ import { getAllPokemons } from '../../src/redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
+import Pagination from "./Pagination";
+
 
 export default function Pokemons (){
     
     const dispatch = useDispatch();
     const pokemons = useSelector((state) => state.pokemons)
-
+    
     // console.log(pokemons)
 
     // const [data, setData] =useState([])
@@ -29,6 +31,7 @@ export default function Pokemons (){
             <header>
                 <SearchBar/>
             </header>
+            <Pagination/>
             <div className={pokeStyles.mainContainer}>
                 
                 {
@@ -42,6 +45,7 @@ export default function Pokemons (){
                                     <p>{pokemon.name}</p>
                                     
                                 </div>
+
                             </div>
 
                         )
@@ -49,6 +53,7 @@ export default function Pokemons (){
                 }
                 
             </div>
+            
         </div>
     )
     

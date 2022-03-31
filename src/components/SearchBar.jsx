@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPokemon } from '../redux/actions';
 
 const SearchBar = () => {
+    
     const dispatch = useDispatch()
     const [ input, setInput ]= useState("")
     const pokemons = useSelector((state) => state.pokemons)

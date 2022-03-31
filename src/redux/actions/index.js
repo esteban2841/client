@@ -1,6 +1,8 @@
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
 export const CREATE_POKEMON = 'CREATE_POKEMON';
 export const GET_POKEMON = 'GET_POKEMON';
+export const NEXT_PAGE = 'NEXT-PAGE';
+export const PREV_PAGE = 'PREV_PAGE';
 
 
 
@@ -33,6 +35,39 @@ export const getPokemon =  (name) => async dispatch => {
     }))
 };
 
+export const nextPage =  (page) => async dispatch => {
+    
+    
+    const pokemones = await fetch(urlPokemons + "?page="+page)
+    const res = await pokemones.json()
+    
+    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
+
+
+    return (
+        
+        dispatch({
+            type : NEXT_PAGE,
+            payload : res
+    }))
+};
+export const prevPage =  (page) => async dispatch => {
+    
+    
+
+    const pokemones = await fetch(urlPokemons + "?page="+page)
+    const res = await pokemones.json()
+    
+    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
+
+
+    return (
+        
+        dispatch({
+            type : PREV_PAGE,
+            payload : res
+    }))
+};
 let id = 40;
 
 export const createPokemon = (pokeObj)=>{
