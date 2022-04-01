@@ -1,5 +1,5 @@
 
-import { CREATE_POKEMON, GET_ALL_POKEMONS, GET_POKEMON, NEXT_PAGE, PREV_PAGE } from "../actions";
+import { CREATE_POKEMON, GET_ALL_POKEMONS, GET_POKEMON, NEXT_PAGE, PAGINATION, PREV_PAGE } from "../actions";
 
 
 const initialState = {
@@ -17,10 +17,9 @@ const rootReducer = (state = initialState, action) => {
         return { ...state, pokemons : action.payload }
         case CREATE_POKEMON:
             return { ...state, pokemons : action.payload }
-        case NEXT_PAGE:
+        case PAGINATION:
             return { ...state, pokemons : action.payload }
-        case PREV_PAGE:
-        return { ...state, pokemons : action.payload}
+       
        default : return state
     };
 };

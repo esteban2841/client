@@ -1,9 +1,8 @@
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
 export const CREATE_POKEMON = 'CREATE_POKEMON';
 export const GET_POKEMON = 'GET_POKEMON';
-export const NEXT_PAGE = 'NEXT-PAGE';
-export const PREV_PAGE = 'PREV_PAGE';
-
+export const PAGINATION = 'PAGINATION';
+export const SORT_FILTER = "SORT_FILTER"
 
 
 let urlPokemons= 'http://localhost:3001/pokemons'
@@ -35,7 +34,7 @@ export const getPokemon =  (name) => async dispatch => {
     }))
 };
 
-export const nextPage =  (page) => async dispatch => {
+export const pagination =  (page) => async dispatch => {
     
     
     const pokemones = await fetch(urlPokemons + "?page="+page)
@@ -47,27 +46,27 @@ export const nextPage =  (page) => async dispatch => {
     return (
         
         dispatch({
-            type : NEXT_PAGE,
+            type : PAGINATION,
             payload : res
     }))
 };
-export const prevPage =  (page) => async dispatch => {
+export const sortFilter =  () => async dispatch => {
     
     
-
-    const pokemones = await fetch(urlPokemons + "?page="+page)
+    const pokemones = await fetch(urlPokemons + "/all")
     const res = await pokemones.json()
-    
+       
     // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
 
 
     return (
         
         dispatch({
-            type : PREV_PAGE,
+            type : SORT_FILTER,
             payload : res
     }))
 };
+
 let id = 40;
 
 export const createPokemon = (pokeObj)=>{

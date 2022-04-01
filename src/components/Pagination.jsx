@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { nextPage, prevPage } from '../redux/actions';
+import { pagination } from '../redux/actions';
 
 
 function Pagination() {
@@ -17,7 +17,7 @@ function Pagination() {
             setPage(page+1)
         }
         console.log(page)
-        dispatch(nextPage(page))
+        dispatch(pagination(page))
     }
     function handlePaginationPrev(){
         setPage(page)
@@ -27,7 +27,7 @@ function Pagination() {
             setPage(page-1)
         }
         console.log(page)
-        dispatch(prevPage(page))
+        dispatch(pagination(page))
     }
 
     return (

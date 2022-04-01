@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
+import FilterButton from "./FilterButton";
+import { Link } from "react-router-dom";
 
 
 export default function Pokemons (){
@@ -30,6 +32,8 @@ export default function Pokemons (){
 
             <header>
                 <SearchBar/>
+                <FilterButton/>
+                <button><Link to={"/create"}>Create Pokemon</Link></button>
             </header>
             <Pagination/>
             <div className={pokeStyles.mainContainer}>
@@ -38,15 +42,25 @@ export default function Pokemons (){
                     pokemons.map(pokemon=>{
                         
                         return (
-                            <div>
-
-                                <div id={pokemon.id} className={pokeStyles.cardsContainer}>
-                                    <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
-                                    <p>{pokemon.name}</p>
+                             <div id={pokemon.id} className={pokeStyles.cardsContainer}>
+                                <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
+                                <p className={pokeStyles.pokeName}>{pokemon.name}</p>
+                                <div className={pokeStyles.pokeTypesContainer}>
+                            {
+                                pokemon.types.map(t=>
                                     
-                                </div>
-
+                                <p className={pokeStyles.pokeType}>{t.type.name}</p>
+                                    
+                                    
+                                    
+                                )
+                            }
+                                    
+                                    
+                                </div>                            
                             </div>
+
+                           
 
                         )
                     })
