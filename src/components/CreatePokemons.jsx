@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import createCss from "../styles/create.module.css"
 
 function CreatePokemons() {
     const [form, setForm] = useState({
@@ -30,45 +30,56 @@ function CreatePokemons() {
     
 
     return (
-        <div>
-            <form action="" className=""
+        <div className={createCss.mainContainer}>
+            <form action="" 
+            className={createCss.form}
             onSubmit={handleSubmitForm}>
+                <span className={createCss.span}>Name:</span>
                 <input 
+                className={createCss.input}
                 onChange={handleInputChange}
                 type="text" 
                 name="name"
                 value={form.name}
                 placeholder="name"
                 />
+                <span className={createCss.span}>Img:</span>
                 <input 
+                className={createCss.input}
                 onChange={handleInputChange}
                 type="text"
                 name="img" 
                 value={form.img}
                 placeholder="img"
                 />
+                <span className={createCss.span}>Height:</span>
                 <input 
+                className={createCss.input}
                 onChange={handleInputChange}
                 type="number" 
                 name="height"
                 value={form.height}
                 placeholder="height"
                 />
+                <span className={createCss.span}>Weight:</span>
                 <input 
+                className={createCss.input}
                 onChange={handleInputChange}
                 type="number" 
                 name="weight"
                 value={form.weight}
                 placeholder="weight"
                 />
+                <span className={createCss.span}>Types:</span>
                 <input 
+                className={createCss.input}
                 onChange={handleInputChange}
                 type="text" 
                 name="types"
                 value={form.types}
                 placeholder="types"
                 />
-                <button type="submit">Submit</button>
+                <button className={createCss.btn} type="submit">Submit</button>
             </form>
         </div>
     );

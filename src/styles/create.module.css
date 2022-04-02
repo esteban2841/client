@@ -1,0 +1,36 @@
+
+.mainContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+    height: 90%;
+    width: 90%;
+    font-size: x-large;
+    background-color: rgba(153, 242, 215, 0.886);
+    border-style: solid;
+    border-radius: 50px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw ;
+    height: 80vh;
+}
+
+.input{
+    height: 35px;
+    padding-bottom: 30px;
+    width: auto;
+    font-size: large;
+}
+.span{
+    align-self: flex-start;
+    padding-bottom: 20px;
+}
+.btn{
+    margin-top: 20px;
+    height: 7%;
+}
