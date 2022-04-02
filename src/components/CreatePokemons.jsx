@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import createCss from "../styles/create.module.css"
+import { Link } from "react-router-dom";
 
 function CreatePokemons() {
     const [form, setForm] = useState({
@@ -79,7 +80,7 @@ function CreatePokemons() {
                 value={form.types}
                 placeholder="types"
                 />
-                <button className={createCss.btn} type="submit">Submit</button>
+                <button className={createCss.btn} type="submit"><Link to={"/pokemons"}></Link> Submit</button>
             </form>
         </div>
     );
