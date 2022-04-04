@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import LandingPage from './components/LandingPage.jsx';
 import Pokemons from './components/Pokemons.jsx';
 import CreatePokemons from './components/CreatePokemons';
+import PokeDetails from './components/PokeDetails';
 
 function App() {
 
@@ -14,8 +15,10 @@ function App() {
     <div className="App">
       <Routes>
       <Route exact path={"/"} element={<LandingPage/>}></Route>
-      <Route exact path={"/pokemons"} element={<Pokemons/>}></Route>
+      <Route exact path={"/home"} element={<Pokemons/>}></Route>
       <Route exact path={"/create"} element={<CreatePokemons/>}></Route>
+      <Route exact path={"/pokeDetail"} element={<PokeDetails/>}></Route>
+
       </Routes>
       
     </div>

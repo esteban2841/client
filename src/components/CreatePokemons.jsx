@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import createCss from "../styles/create.module.css"
 import { Link } from "react-router-dom";
-
+import axios from "axios"
 function CreatePokemons() {
+
+    // const history = useHistory()
     const [form, setForm] = useState({
         name:"",
         img:"",
@@ -22,11 +24,8 @@ function CreatePokemons() {
     const handleSubmitForm = async (e)=>{
         e.preventDefault()
         console.log(form)
-        const sendInfo = await fetch("http://localhost:3001/pokemons",{
-            method: "POST",
-            body: JSON.stringify(form)
-        })
-        const res = await sendInfo.json()
+        const sendInfo = await axios.post("http://localhost:3001/pokemons",form)
+        // history.push("/home")
     }
     
 

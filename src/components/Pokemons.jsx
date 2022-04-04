@@ -1,5 +1,5 @@
 import React, { useEffect} from "react";
-import { getAllPokemons } from '../../src/redux/actions/index';
+import { getAllPokemons, pokeDetail } from '../../src/redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
@@ -26,7 +26,11 @@ export default function Pokemons (){
     //     getData()
     },[])
     
-    
+    function handleButtonDetails(e){
+        const id = e.target.id
+        console.log(id)
+        dispatch(pokeDetail(id))
+    }
     return(
         <div>
 
@@ -44,21 +48,25 @@ export default function Pokemons (){
                         
                         return (
                              <div id={pokemon.id} className={pokeStyles.cardsContainer}>
-                                <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
                                 <p className={pokeStyles.pokeName}>{pokemon.name}</p>
+                                <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
                                 <div className={pokeStyles.pokeTypesContainer}>
-                            {
-                                pokemon.types.map(t=>
+                                {
                                     
-                                <p className={pokeStyles.pokeType}>{t.name}</p>
+                                    pokemon.types.map(t=>
                                     
+
+                                        <p className={pokeStyles.pokeType}>{t.name}</p>
+                                        
+                                        
+                                    )
                                     
-                                    
-                                )
-                            }
-                                    
-                                    
+                                }
                                 </div>                            
+                                
+                                
+                                <div className={pokeStyles.divLink}><Link className={pokeStyles.link} to={"/pokeDetail"}>       <button id={pokemon.id} onClick={(e)=>handleButtonDetails(e)}>Details</button></Link></div>
+                                    
                             </div>
 
                            

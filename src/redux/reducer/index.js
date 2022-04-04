@@ -1,10 +1,10 @@
 
-import { CREATE_POKEMON, GET_ALL_POKEMONS, GET_POKEMON, PAGINATION, SORT_FILTER } from "../actions";
+import { CREATE_POKEMON, GET_ALL_POKEMONS, GET_POKEMON, PAGINATION, POKE_DETAIL, SORT_FILTER } from "../actions";
 
 
 const initialState = {
     pokemons: [],
-    pokemon: {},
+    pokemon: [],
     
 };
 
@@ -19,6 +19,8 @@ const rootReducer = (state = initialState, action) => {
         return { ...state, pokemons : action.payload }
         case SORT_FILTER:
         return {...state, pokemons: action.payload}
+        case POKE_DETAIL:
+        return {...state, pokemon: action.payload}
         case PAGINATION:
         return { ...state, pokemons : action.payload }
        
