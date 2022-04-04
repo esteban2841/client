@@ -15,18 +15,18 @@ function CreatePokemons() {
         const value = e.currentTarget.value
         console.log(value)
         const setState = {...form,[e.currentTarget.name]:value}
-        setForm(setState)
         console.log(setState)
+        setForm(setState)
     }
     
     const handleSubmitForm = async (e)=>{
         e.preventDefault()
+        console.log(form)
         const sendInfo = await fetch("http://localhost:3001/pokemons",{
             method: "POST",
             body: JSON.stringify(form)
         })
         const res = await sendInfo.json()
-        console.log(res)
     }
     
 

@@ -12,7 +12,7 @@ const SearchBar = () => {
     function handleInputChange (e){
         e.preventDefault()
         setInput(e.target.value)
-        console.log(input)
+        
     }
     function handleSubmit (e){
         e.preventDefault()

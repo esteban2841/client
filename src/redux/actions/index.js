@@ -3,6 +3,7 @@ export const CREATE_POKEMON = 'CREATE_POKEMON';
 export const GET_POKEMON = 'GET_POKEMON';
 export const PAGINATION = 'PAGINATION';
 export const SORT_FILTER = "SORT_FILTER"
+export const POKE_DETAIL = "POKE_DETAIL"
 
 
 let urlPokemons= 'http://localhost:3001/pokemons'
@@ -50,19 +51,24 @@ export const pagination =  (page) => async dispatch => {
             payload : res
     }))
 };
-export const sortFilter =  () => async dispatch => {
-    
-    
-    const pokemones = await fetch(urlPokemons + "/all")
-    const res = await pokemones.json()
-       
-    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
-
-
+export const sortFilter =  (objSort) => async dispatch => {
     return (
         
         dispatch({
             type : SORT_FILTER,
+            payload : objSort
+    }))
+};
+export const pokeDetail =  (id) => async dispatch => {
+
+    const urlDetail = "http://localhost:3001/pokemons/" + id;
+    const pokemones = await fetch(urlDetail)
+    const res = await pokemones.json()
+
+    return (
+        
+        dispatch({
+            type : POKE_DETAIL,
             payload : res
     }))
 };

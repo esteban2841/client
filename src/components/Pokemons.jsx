@@ -13,7 +13,7 @@ export default function Pokemons (){
     const dispatch = useDispatch();
     const pokemons = useSelector((state) => state.pokemons)
     
-    // console.log(pokemons)
+    console.log(pokemons)
 
     // const [data, setData] =useState([])
 
@@ -30,9 +30,10 @@ export default function Pokemons (){
     return(
         <div>
 
-            <header>
-                <SearchBar/>
-                <FilterButton/>
+            <header className={pokeStyles.filtros}>
+                <span>Search<SearchBar className={pokeStyles.cFiltro}/></span>
+                <span>Filter:<FilterButton className={pokeStyles.cFiltro}/></span>
+                                
                 <button><Link to={"/create"}>Create Pokemon</Link></button>
             </header>
             <Pagination/>
@@ -49,7 +50,7 @@ export default function Pokemons (){
                             {
                                 pokemon.types.map(t=>
                                     
-                                <p className={pokeStyles.pokeType}>{t.type.name}</p>
+                                <p className={pokeStyles.pokeType}>{t.name}</p>
                                     
                                     
                                     
