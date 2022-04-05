@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { sortFilter } from '../redux/actions';
 
 
-function FilterButton() {
+function AzFilter () {
     const dispatch = useDispatch()
     const pokemons = useSelector(state=> state.pokemons)
     
@@ -49,4 +49,4 @@ function FilterButton() {
     );
 }
 
-export default FilterButton;
+export default AzFilter;

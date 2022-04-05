@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
-import FilterButton from "./FilterButton";
+import AzFilter from "./AzFilter";
 import { Link } from "react-router-dom";
+import TypeFilter from "./TypeFilter";
 
 
 export default function Pokemons (){
@@ -36,8 +37,9 @@ export default function Pokemons (){
 
             <header className={pokeStyles.filtros}>
                 <span>Search<SearchBar className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<FilterButton className={pokeStyles.cFiltro}/></span>
-                                
+                <span>Filter:<AzFilter className={pokeStyles.cFiltro}/></span>
+                <span>Filter:<TypeFilter className={pokeStyles.cFiltro}/></span>
+                
                 <button><Link to={"/create"}>Create Pokemon</Link></button>
             </header>
             <Pagination/>
