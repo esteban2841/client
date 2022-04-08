@@ -10,29 +10,32 @@ function Pagination() {
     const [page,setPage] = useState(1)
 
     function handlePaginationNext(){
-        setPage(page)
+        let newPage
         if(page>=4){
-            setPage(1)
+            // setPage(1)
+            newPage = 1
         }else{
-            setPage(page+1)
+            // setPage(page+1)
+            newPage = page +1 
         }
-        console.log(page)
-        dispatch(pagination(page))
+        setPage(newPage)
+        dispatch(pagination(newPage))
     }
     function handlePaginationPrev(){
-        setPage(page)
+        let newPage
         if(page<=1){
-            setPage(4)
+            newPage = 1
         }else{
-            setPage(page-1)
+            newPage = page -1 
         }
-        console.log(page)
-        dispatch(pagination(page))
+        setPage(newPage)
+        dispatch(pagination(newPage))
     }
 
     return (
         <div>
             <span>Prev Page<button id="btnprev" onClick={handlePaginationPrev}>{"<"}</button></span>
+            <div>{page}</div>
             <span><button id="btnNext" onClick={handlePaginationNext}>{">"}</button>Next Page</span>
         </div>
     );

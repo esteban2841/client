@@ -4,8 +4,12 @@ import {Link} from "react-router-dom"
 
 function PokeDetails(id) {
     
-    const pokemon = useSelector(state=>state.pokemon)
+    const {pokemon, loader} = useSelector(state=>({pokemon: state.pokemon, loader: state.pokemonIsLoading}))
     
+
+    if(loader){
+        return <h1>Is loading...</h1>
+    }
 
 
     return (

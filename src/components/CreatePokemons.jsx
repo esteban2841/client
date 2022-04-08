@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import createCss from "../styles/create.module.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 function CreatePokemons() {
 
-    // const history = useHistory()
+    const history = useNavigate()
     const [form, setForm] = useState({
         name:"",
         img:"",
         height:0,
         weight:0,
-        types:"",
+        type1:"",
+        type2:"",
     })
 
     const handleInputChange = (e)=>{
@@ -25,7 +26,7 @@ function CreatePokemons() {
         e.preventDefault()
         console.log(form)
         const sendInfo = await axios.post("http://localhost:3001/pokemons",form)
-        // history.push("/home")
+        history("/home")
     }
     
 
@@ -75,9 +76,17 @@ function CreatePokemons() {
                 className={createCss.input}
                 onChange={handleInputChange}
                 type="text" 
-                name="types"
-                value={form.types}
-                placeholder="types"
+                name="type1"
+                value={form.type1}
+                placeholder="type"
+                />
+                <input 
+                className={createCss.input}
+                onChange={handleInputChange}
+                type="text" 
+                name="type2"
+                value={form.type2}
+                placeholder="type"
                 />
                 <button className={createCss.btn} type="submit"><Link to={"/pokemons"}></Link> Submit</button>
             </form>

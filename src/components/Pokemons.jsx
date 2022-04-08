@@ -12,7 +12,7 @@ import TypeFilter from "./TypeFilter";
 export default function Pokemons (){
     
     const dispatch = useDispatch();
-    const pokemons = useSelector((state) => state.pokemons)
+    const {pokemons, loader} = useSelector(state=>({pokemons: state.pokemons, loader: state.pokemonsIsLoading}))
     
     console.log(pokemons)
 
@@ -32,6 +32,12 @@ export default function Pokemons (){
         console.log(id)
         dispatch(pokeDetail(id))
     }
+
+    if(loader){
+        return <h1>Is loading...</h1>
+    }
+
+
     return(
         <div>
 

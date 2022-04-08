@@ -1,11 +1,13 @@
 
-import {  GET_ALL_POKEMONS, GET_POKEMON, GET_TYPES, PAGINATION, POKE_DETAIL, SORT_FILTER, TYPE_FILTER } from "../actions";
+import {  GET_ALL_POKEMONS, GET_POKEMON, GET_TYPES, LOADER_POKEMON, LOADER_POKEMONS, PAGINATION, POKE_DETAIL, SORT_FILTER, TYPE_FILTER } from "../actions";
 
 
 const initialState = {
     pokemons: [],
     pokemon: [],
-    types:[]
+    types:[],
+    pokemonsIsLoading:true,
+    pokemonIsLoading:true
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -25,6 +27,10 @@ const rootReducer = (state = initialState, action) => {
         return { ...state, types : action.payload }
         case TYPE_FILTER:
         return {...state, pokemons: action.payload}
+        case LOADER_POKEMONS:
+        return {...state, pokemonsIsLoading: action.payload}
+        case LOADER_POKEMON:
+        return {...state, pokemonIsLoading: action.payload}
        
        default : return state
     };

@@ -8,14 +8,27 @@ export const SORT_FILTER = "SORT_FILTER"
 export const POKE_DETAIL = "POKE_DETAIL"
 export const GET_TYPES = "GET_TYPES"
 export const TYPE_FILTER = "TYPE_FILTER"
+export const LOADER_POKEMONS = "LOADER_POKEMONS"
+export const LOADER_POKEMON = "LOADER_POKEMON"
 
 let urlPokemons= 'http://localhost:3001/pokemons'
 
 export const getAllPokemons =   () => async dispatch => {
    
+    dispatch({
+        type :  GET_ALL_POKEMONS,
+        payload : []
+    })
+    dispatch({
+        type : LOADER_POKEMONS,
+        payload : true
+    })
+    
     const pokemones = await axios(urlPokemons)
-    
-    
+    dispatch({
+        type : LOADER_POKEMONS,
+        payload : false
+    })
     return dispatch({
             type : GET_ALL_POKEMONS,
             payload : pokemones.data
@@ -29,7 +42,6 @@ export const getPokemon =  (name) => async dispatch => {
     
     // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
 
-
     return (
         
         dispatch({
@@ -40,13 +52,11 @@ export const getPokemon =  (name) => async dispatch => {
 
 export const pagination =  (page) => async dispatch => {
     
-    
     const pokemones = await fetch(urlPokemons + "?page="+page)
     const res = await pokemones.json()
     
     // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
-
-
+    
     return (
         
         dispatch({
@@ -64,16 +74,28 @@ export const sortFilter =  (objSort) => async dispatch => {
 };
 export const pokeDetail =  (id) => async dispatch => {
     
+    dispatch({
+        type : POKE_DETAIL,
+        payload : []
+    })
+    dispatch({
+        type : LOADER_POKEMON,
+        payload : true
+    })
     const urlDetail = "http://localhost:3001/pokemons/" + id;
     const pokemones = await fetch(urlDetail)
     const res = await pokemones.json()
-
-    return (
+    
+    dispatch({
+        type : LOADER_POKEMON,
+        payload : false
+    })
+    
+    dispatch({
+        type : POKE_DETAIL,
+        payload : res
+    })
         
-        dispatch({
-            type : POKE_DETAIL,
-            payload : res
-    }))
 };
 export const getTypes =  () => async dispatch => {
     
