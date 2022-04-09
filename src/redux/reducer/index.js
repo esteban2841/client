@@ -1,5 +1,5 @@
 
-import {  GET_ALL_POKEMONS, GET_POKEMON, GET_TYPES, LOADER_POKEMON, LOADER_POKEMONS, PAGINATION, POKE_DETAIL, SORT_FILTER, TYPE_FILTER } from "../actions";
+import {  CREATION_FILTER, GET_ALL_POKEMONS, GET_POKEMON, GET_TYPES, LOADER_POKEMON, LOADER_POKEMONS, PAGINATION, POKE_DETAIL, SORT_FILTER, STRENGTH_FILTER, TYPE_FILTER } from "../actions";
 
 
 const initialState = {
@@ -31,6 +31,10 @@ const rootReducer = (state = initialState, action) => {
         return {...state, pokemonsIsLoading: action.payload}
         case LOADER_POKEMON:
         return {...state, pokemonIsLoading: action.payload}
+        case STRENGTH_FILTER:
+        return {...state, pokemons: action.payload}
+        case CREATION_FILTER:
+        return {...state, pokemons: action.payload}
        
        default : return state
     };

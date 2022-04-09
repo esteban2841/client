@@ -5,6 +5,9 @@ import axios from "axios"
 function CreatePokemons() {
 
     const history = useNavigate()
+
+    
+
     const [form, setForm] = useState({
         name:"",
         img:"",
@@ -35,32 +38,26 @@ function CreatePokemons() {
             <form action="" 
             className={createCss.form}
             onSubmit={handleSubmitForm}>
-                <span className={createCss.span}>Name:</span>
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="text" 
-                name="name"
-                value={form.name}
-                placeholder="name"
-                />
-                <span className={createCss.span}>Img:</span>
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="text"
-                name="img" 
-                value={form.img}
-                placeholder="img"
-                />
-                <span className={createCss.span}>Height:</span>
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="number" 
-                name="height"
-                value={form.height}
-                placeholder="height"
+                <Input 
+                    name='name'
+                    type='text'
+                    value={form.name}
+                    handleInputChange={handleInputChange}
+                    placeholder='name'
+                    />
+                <Input 
+                    name='img'
+                    type='text'
+                    value={form.img}
+                    handleInputChange={handleInputChange}
+                    placeholder='img'
+                    />
+                <Input 
+                    name='height'
+                    type='number'
+                    value={form.height}
+                    handleInputChange={handleInputChange}
+                    placeholder='height'
                 />
                 <span className={createCss.span}>Weight:</span>
                 <input 
@@ -92,6 +89,24 @@ function CreatePokemons() {
             </form>
         </div>
     );
+}
+
+
+function Input({type,name,value,placeholder,handleInputChange}){
+    
+    return(
+        <div className={createCss.containerInput}>
+            <span className={createCss.span}>{name}:</span>
+            <input 
+            className={createCss.input}
+            onChange={handleInputChange}
+            type={type} 
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            />
+        </div>
+    )
 }
 
 export default CreatePokemons;

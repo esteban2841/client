@@ -10,6 +10,8 @@ export const GET_TYPES = "GET_TYPES"
 export const TYPE_FILTER = "TYPE_FILTER"
 export const LOADER_POKEMONS = "LOADER_POKEMONS"
 export const LOADER_POKEMON = "LOADER_POKEMON"
+export const STRENGTH_FILTER = "STRENGTH_FILTER"
+export const CREATION_FILTER = "STRENGTH_FILTER"
 
 let urlPokemons= 'http://localhost:3001/pokemons'
 
@@ -69,6 +71,22 @@ export const sortFilter =  (objSort) => async dispatch => {
         
         dispatch({
             type : SORT_FILTER,
+            payload : objSort
+    }))
+};
+export const strenghtFilter =  (objSort) => async dispatch => {
+    return (
+        
+        dispatch({
+            type : STRENGTH_FILTER,
+            payload : objSort
+    }))
+};
+export const creationTypeFilter =  (objSort) => async dispatch => {
+    return (
+        
+        dispatch({
+            type : CREATION_FILTER,
             payload : objSort
     }))
 };

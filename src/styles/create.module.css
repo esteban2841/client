@@ -1,37 +1,77 @@
-
 .mainContainer{
     display: flex;
     align-content: center;
     justify-content: center;
-    
-    height: 90%;
+    margin: auto;
+    padding: 70px;
     width: 90%;
-    font-size: x-large;
-    background-color: rgba(153, 242, 215, 0.886);
+    max-width: 800px;
+    background-color: #0a9396;
     border-style: solid;
-    border-radius: 50px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: none;
+    margin-top: 50px;
 }
 
+@media(max-width:600px){
+    .mainContainer{
+        padding: 20px;
+
+    }
+}
 
 .form{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 80vw ;
-    height: 80vh;
+    width: 100%;
+    gap: 25px;
+    /* width: 80vw ; */
+    /* height: 80vh; */
+}
+
+.containerInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .input{
     height: 35px;
-    padding-bottom: 30px;
     width: auto;
     font-size: large;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    color: rgb(32, 32, 32);
+    font-size: 16px;
 }
+
 .span{
     align-self: flex-start;
-    padding-bottom: 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 17px;
 }
+
 .btn{
-    margin-top: 20px;
-    height: 7%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #bb3e03;
+    outline: none;
+    color: white;
+    background: #bb3e03;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+
+.btn:hover{
+    cursor: pointer;
+    border: 2px solid #bb3e03;
+    background:white;
+    color: #bb3e03;
 }
