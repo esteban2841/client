@@ -43,7 +43,7 @@ function TypeFilter() {
     return (
         <div>
             <select name="" id="" onChange={(e)=>handleDropDown(e)}>
-                <option value="" ></option>
+                <option value="" >Filter by Type</option>
                 {
                     types && types.map(t=>{
                         return (

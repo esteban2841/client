@@ -41,7 +41,7 @@ function AzFilter () {
     return (
         <div>
             <select name="" id="" onChange={(e)=>handleDropDown(e)}>
-                <option value=""></option>
+                <option value="">Sort by Name</option>
                 <option value="A-Z" >A-Z</option>
                 <option value="Z-A" >Z-A</option>
             </select>

@@ -7,8 +7,8 @@ import Pagination from "./Pagination";
 import AzFilter from "./AzFilter";
 import { Link } from "react-router-dom";
 import TypeFilter from "./TypeFilter";
-import StrenghtFilter from "./StrenghtFilter";
-import CreationFilter from "./CreationFilter";
+import StrengthFilter from "./StrengthFilter.jsx";
+import CreationFilter from "./CreationFilter.jsx";
 
 
 export default function Pokemons (){
@@ -27,7 +27,7 @@ export default function Pokemons (){
     //         console.log(data)
     //     }
     //     getData()
-    },[])
+    },[dispatch])
     
     function handleButtonDetails(e){
         const id = e.target.id
@@ -47,7 +47,7 @@ export default function Pokemons (){
                 <span>Search<SearchBar className={pokeStyles.cFiltro}/></span>
                 <span>Filter:<AzFilter className={pokeStyles.cFiltro}/></span>
                 <span>Filter:<TypeFilter className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<StrenghtFilter className={pokeStyles.cFiltro}/></span>
+                <span>Filter:<StrengthFilter className={pokeStyles.cFiltro}/></span>
                 <span>Filter:<CreationFilter className={pokeStyles.cFiltro}/></span>
                 <button><Link to={"/create"}>Create Pokemon</Link></button>
             </header>

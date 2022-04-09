@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { getTypes, strenghtFilter  } from '../redux/actions';
+import {  strenghtFilter  } from '../redux/actions';
 
 function StrenghtFilter() {
 
@@ -52,7 +52,7 @@ function StrenghtFilter() {
     return (
         <div>
              <select name="" id="" onChange={(e)=>handleDropDown(e)}>
-                <option value="">Sort by Strenght</option>
+                <option value="">Sort by Strength</option>
                 <option value="ascending" >ascending</option>
                 <option value="descending" >descending</option>
             </select>
