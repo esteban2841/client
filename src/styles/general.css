@@ -1,0 +1,48 @@
+.grass{
+    background: #34da76;
+}
+
+.poison{
+    background: #da2470;
+}
+
+.water{
+    background: #2479da;
+}
+
+.fire{
+    background: #da3324;
+}
+.errors{
+    color: red
+}
+.pagination{
+    display: flex;
+    margin: auto;
+    width: min-content;
+    gap: 10px;
+    align-items: center;
+    color: white;
+}
+
+.pagination button{
+    padding: 1px 10px;
+}
+
+.pagination>div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.buttonCreate{
+    background: #ed5564;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    width: auto;
+    margin: auto;
+}

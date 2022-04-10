@@ -12,76 +12,74 @@ export const LOADER_POKEMONS = "LOADER_POKEMONS"
 export const LOADER_POKEMON = "LOADER_POKEMON"
 export const STRENGTH_FILTER = "STRENGTH_FILTER"
 export const CREATION_FILTER = "STRENGTH_FILTER"
+export const CHANGE_FILTER = 'CHANGE_FILTER'
+export const NEW_PAGE = "NEW_PAGE"
 
-let urlPokemons= 'http://localhost:3001/pokemons'
+let urlPokemons=  "http://localhost:3001/pokemons/"
 
-export const getAllPokemons =   () => async dispatch => {
+
+export const getAllPokemons =   () => async (dispatch, getState) => {
    
+    //ELIMINAMOS LOS DATOS QUE EXISTAN EN POKEMONFILTERED
     dispatch({
-        type :  GET_ALL_POKEMONS,
+        type :  PAGINATION,
         payload : []
     })
+
+    //MOSTRAMOS EL LOADING DE LOS DATOS
     dispatch({
         type : LOADER_POKEMONS,
         payload : true
     })
     
     const pokemones = await axios(urlPokemons)
+
+    //ESCONDEMOS EL LOADING 
     dispatch({
         type : LOADER_POKEMONS,
         payload : false
     })
-    return dispatch({
+
+    //SETEAMOS TODOS LOS POKEMONES
+    dispatch({
             type : GET_ALL_POKEMONS,
             payload : pokemones.data
+    })
+
+    //EJECUTAMOS EL FILTRO CON TODOS LOS POKEMONES
+    dispatch({
+        type: PAGINATION,
+        payload: applyFilters(getState)
     })
 };
 
 export const getPokemon =  (name) => async dispatch => {
-   
     const pokemones = await fetch(urlPokemons + "?name="+name)
     const res = await pokemones.json()
-    
-    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
-
-    return (
         
-        dispatch({
-            type : GET_POKEMON,
-            payload : res
-    }))
+    dispatch({
+        type : GET_POKEMON,
+        payload : res
+    })
 };
 
-export const pagination =  (page) => async dispatch => {
+export const getPage =  (newPage) => async (dispatch,getState)=> {
     
-    const pokemones = await fetch(urlPokemons + "?page="+page)
-    const res = await pokemones.json()
+
+    dispatch({
+        type:NEW_PAGE,
+        payload: newPage
+    })
+
+
+    dispatch({
+        type: PAGINATION,
+        payload: applyFilters(getState)
+    })
     
-    // const pokeFiltered = res.filter(pokemon => name === pokemon.name)
-    
-    return (
-        
-        dispatch({
-            type : PAGINATION,
-            payload : res
-    }))
+
 };
-export const sortFilter =  (objSort) => async dispatch => {
-    return (
-        
-        dispatch({
-            type : SORT_FILTER,
-            payload : objSort
-    }))
-};
-export const strenghtFilter =  (objSort) => async dispatch => {
-    return (
-        
-        dispatch({
-            type : STRENGTH_FILTER,
-            payload : objSort
-    }))
-};
+
 export const creationTypeFilter =  (objSort) => async dispatch => {
     return (
         
@@ -90,8 +88,10 @@ export const creationTypeFilter =  (objSort) => async dispatch => {
             payload : objSort
     }))
 };
+
 export const pokeDetail =  (id) => async dispatch => {
     
+    console.log('no se')
     dispatch({
         type : POKE_DETAIL,
         payload : []
@@ -100,7 +100,7 @@ export const pokeDetail =  (id) => async dispatch => {
         type : LOADER_POKEMON,
         payload : true
     })
-    const urlDetail = "http://localhost:3001/pokemons/" + id;
+    const urlDetail = urlPokemons + id;
     const pokemones = await fetch(urlDetail)
     const res = await pokemones.json()
     
@@ -115,25 +115,135 @@ export const pokeDetail =  (id) => async dispatch => {
     })
         
 };
+
 export const getTypes =  () => async dispatch => {
     
-    const urlTypes = "http://localhost:3001/types"
+    const urlTypes =  "http://localhost:3001/types"
     const res = await fetch(urlTypes)
     const types = await res.json()
+
     return (
-        
         dispatch({
             type : GET_TYPES,
             payload : types
         }))
-    };
-    export const typeFilters =  (objSort) => async dispatch => {
-        return (
+};
+
+export const changeFilter = (type,value) => async (dispatch,getState) =>{
+
+    dispatch({
+        type: CHANGE_FILTER,
+        payload: {
+            type,
+            value
+        }
+    })
+
+    
+    dispatch({
+        type: PAGINATION,
+        payload: applyFilters(getState)
+    })
+
+}
+
+//function para filtrar y paginar todos los pokemones
+const applyFilters = (getState)=>{
+
+    let { pokemons : data, filters, pagination : page } = getState()
+
+    let pokemones = [...data]
+
+    pokemones = filterByStrength(pokemones, filters.strength)
+    pokemones = filterByType(pokemones,filters.type)
+    pokemones = filterByText(pokemones,filters.texto)
+    pokemones = filterByDataBase(pokemones,filters.creation)
+
+    let quantityPerPage = 12
+    
+    const inicio = (page-1) * quantityPerPage
+    const fin = page * quantityPerPage
+    
+    pokemones = pokemones.slice(inicio,fin)
+    console.log({pokemones,inicio, fin})
+
+    return pokemones
+}
+
+//filtros independientes
+const filterByText = (data,value) =>{
+    
+    if(value === "A-Z"){
+       return [...data].sort((a,b) => {
+            if(a.name > b.name){
+                return 1
+            }else{
+                return -1
+            }
             
-            dispatch({
-                type : SORT_FILTER,
-                payload : objSort
-        }))
-    };
-    
-    
+        })
+    }else if(value === 'Z-A'){
+        return [...data].sort((a,b) => {
+        if(a.name < b.name){
+                return 1
+            }else{
+                return -1
+            }
+            
+        })
+    }else{
+        return [...data]
+    }
+            
+}
+
+const filterByType = (data,value) => {
+
+    if(value === '') return data
+
+    const findType = (types,type) => types.some( x => x.name === type)
+
+    const newData = data.filter(pokemon=>{
+
+        return findType(pokemon.types, value)
+    })
+
+    return newData
+}
+
+const filterByStrength = (data,value) => {
+
+    if(value === "") return data
+    console.log(value)
+    const findStrength = (stats, stat) => stats.find(s=> s.name === stat)
+
+    return [...data].sort( (a,b) => {
+
+        const valueA = findStrength(a.stats, "attack").value
+        const valueB = findStrength(b.stats, "attack").value
+
+        if(value === "ascending"){
+            if(valueA > valueB)return 1
+            if(valueA < valueB)return -1
+            return 0
+        }
+
+        if(value === "descending"){
+            if(valueA < valueB)return 1
+            if(valueA > valueB)return -1
+            return 0
+        }
+    })
+}
+
+const filterByDataBase = (data,value) => {
+    console.log(value)
+
+    if( value === "CreatedFromAPI"){
+        return data.filter(pokemon=> pokemon.createdInDb === false)
+    }else if(value === 'CreatedFromDB'){
+        return data.filter(pokemon=> pokemon.createdInDb === true)
+    }else{
+        return data
+    }
+}

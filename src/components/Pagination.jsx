@@ -1,42 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { pagination } from '../redux/actions';
+import { getPage } from '../redux/actions';
 
 
 function Pagination() {
 
     const dispatch = useDispatch();
-    const pokemons = useSelector((state) => state.pokemons)
-    const [page,setPage] = useState(1)
+    const {pagination, pokemons} = useSelector((state) => state)
+    
+    const totalPokemons = pokemons
+    const page = pagination
+    const totalPokeQuantity = totalPokemons.length - 1
+    const quantityPerPage = 12
+    const maxPage = Math.ceil(totalPokeQuantity / quantityPerPage)
+    
+    console.log(page)
+    console.log(maxPage)
+
 
     function handlePaginationNext(){
         let newPage
-        if(page>=4){
-            // setPage(1)
-            newPage = 1
-        }else{
-            // setPage(page+1)
-            newPage = page +1 
-        }
-        setPage(newPage)
-        dispatch(pagination(newPage))
+        if(page>=maxPage) newPage = 1
+        else newPage = page +1 
+        
+        dispatch(getPage(newPage))
     }
+
     function handlePaginationPrev(){
         let newPage
-        if(page<=1){
-            newPage = 1
-        }else{
-            newPage = page -1 
-        }
-        setPage(newPage)
-        dispatch(pagination(newPage))
+        if(page<=1) newPage = 1
+        else newPage = page -1 
+
+        dispatch(getPage(newPage))
     }
 
     return (
-        <div>
-            <span>Prev Page<button id="btnprev" onClick={handlePaginationPrev}>{"<"}</button></span>
+        <div className='pagination'>
+            <div>
+                <div>Prev</div>
+                <button id="btnprev" onClick={handlePaginationPrev}>{"<"}</button>
+            </div>
             <div>{page}</div>
-            <span><button id="btnNext" onClick={handlePaginationNext}>{">"}</button>Next Page</span>
+            <div>
+                <button id="btnNext" onClick={handlePaginationNext}>{">"}</button>
+                <div>Next</div>
+            </div>
         </div>
     );
 }

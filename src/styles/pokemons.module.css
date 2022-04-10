@@ -1,46 +1,122 @@
-html,body{
-    margin: 0
+
+body,html{
+    margin: 0;
+    min-height: 100vh;
+    background: #1f252b;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+input,select{
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(32, 32, 32);
+    font-size: 15px;
+    background: white;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+button{
+    outline: none;
+    cursor: pointer;
+    padding: 5px 20px;
 }
 
 .mainContainer{
-    
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    padding-bottom: 10px;
+    padding: 20px;
+    max-width: 1500px;
+    margin: auto;
+    gap: 35px;
     /* background-color: rgb(87, 117, 122); */
 }
 .filtros{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: center;
     font-size: large;
+    background: #191c1f;
+    margin: auto;
+    color: white;
+    padding: 20px 20px;
+    gap: 15px;
+    flex-wrap: wrap;
 }
+
+.filtros>div{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .cFiltro{
     height: 20px;
 }
-.cardsContainer{
-    width: 400px;
-    height: 500px;
-    border-style: outset;
+
+.header{
     margin-bottom: 40px;
-    border-radius: 30px;
+    display: flex;    
+    flex-direction: column;
+    gap: 30px;
+}
+
+.headerTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    gap: 50px;
+}
+
+.headerTitle>img:first-child{
+    height: 50px;
+}
+
+.headerTitle>img:last-child{
+    height: 90px;
+    /* width: 300px; */
+}
+
+.cardsContainer{
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
     font-size: x-large;
-    font-family: 'Josefin Sans', sans-serif;
-    font-family: 'Lobster', cursive;
-    font-family: 'Source Serif Pro', serif;
-    background-color: white;
-    
-    
+    border: 1px solid white;
+    cursor: pointer;
+    background: #191c1f;
 }
+
+.cardsContainer:hover .cardImg{
+    transform: scale(1.25) translateY(-30px);
+}   
+
 .pokeName{
-    border-radius: 5px;
-    border-style: solid;
+    font-weight: 600;
+    font-size: 17px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom:15px;
 }
+
 .pokeTypesContainer{
     display: flex;
     flex-wrap: wrap;
@@ -48,19 +124,22 @@ html,body{
     justify-content: space-around;
     align-items: flex-end;
 }
+
 .pokeType{
-    border-style: solid;
-    border-radius: 10px;
-    height: 40%;
-    width: 40%;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 4px 20px;
 }
+
 .cardImg{
-    height: 50%;
-    width: 100% auto;
+    transition: all 0.25s ease;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
 }
+
 .divLink button{
-    /* background-color: transparent;
-    border: none; */
     height: 40%;
     width: 40%;
     border-style: solid;
@@ -68,9 +147,24 @@ html,body{
     background-color: azure;
     font-size: large;
 }
+
 .link{
     text-decoration: none;
 }
+
 .fire{
     background-image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_124349900_fire-background.html&psig=AOvVaw3XBW3IuAAX8VKpLsZPw5P-&ust=1649142977347000&source=images&cd=vfe&ved=0CAgQjRxqFwoTCMDzq7zu-fYCFQAAAAAdAAAAABAD";
+}
+
+
+@media(max-width:560px){
+
+    .headerTitle{
+        gap: 10px;
+    }
+
+    .filtros div,.filtros select{
+        width: 100%;
+    }
+
 }

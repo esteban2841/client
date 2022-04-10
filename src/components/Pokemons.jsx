@@ -5,34 +5,33 @@ import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
 import Pagination from "./Pagination";
 import AzFilter from "./AzFilter";
-import { Link } from "react-router-dom";
 import TypeFilter from "./TypeFilter";
 import StrengthFilter from "./StrengthFilter.jsx";
 import CreationFilter from "./CreationFilter.jsx";
-
+import imagePokemon from '../images/pokeball.png'
+import imageTitle from '../images/texto.png'
+import '../styles/general.css'
+import {useNavigate} from 'react-router-dom';
 
 export default function Pokemons (){
     
     const dispatch = useDispatch();
-    const {pokemons, loader} = useSelector(state=>({pokemons: state.pokemons, loader: state.pokemonsIsLoading}))
+    const {pokemonsFiltered, loader} = useSelector(state=>({pokemonsFiltered: state.pokemonsFiltered, loader: state.pokemonsIsLoading}))
     
-    console.log(pokemons)
-
-    // const [data, setData] =useState([])
+    const navigate = useNavigate()
 
     useEffect(()=>{
-    //     const getData =  ()=>{
         dispatch(getAllPokemons())
-    //         setData(data)
-    //         console.log(data)
-    //     }
-    //     getData()
-    },[dispatch])
+    },[])
     
-    function handleButtonDetails(e){
-        const id = e.target.id
-        console.log(id)
+    function handleClickCard(e){
+        const id = e.currentTarget.id
         dispatch(pokeDetail(id))
+        navigate('/pokedetail')
+    }
+
+    function handleClickCreate(){
+        navigate('/create')
     }
 
     if(loader){
@@ -42,45 +41,43 @@ export default function Pokemons (){
 
     return(
         <div>
-
-            <header className={pokeStyles.filtros}>
-                <span>Search<SearchBar className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<AzFilter className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<TypeFilter className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<StrengthFilter className={pokeStyles.cFiltro}/></span>
-                <span>Filter:<CreationFilter className={pokeStyles.cFiltro}/></span>
-                <button><Link to={"/create"}>Create Pokemon</Link></button>
+            <header className={pokeStyles.header}>
+                <div className={pokeStyles.headerTitle}>
+                    <img src={imagePokemon} alt="" />
+                    <img src={imageTitle} alt="" />
+                </div>
+                <div className={pokeStyles.filtros}>
+                    <div>Search<SearchBar className={pokeStyles.cFiltro}/></div>
+                    <div>Filter:<AzFilter className={pokeStyles.cFiltro}/></div>
+                    <div>Filter:<TypeFilter className={pokeStyles.cFiltro}/></div>
+                    <div>Filter:<StrengthFilter className={pokeStyles.cFiltro}/></div>
+                    <div>Filter:<CreationFilter className={pokeStyles.cFiltro}/></div>
+                    <button className="buttonCreate" onClick={handleClickCreate}>Create pokemon</button>
+                </div>
             </header>
             <Pagination/>
             <div className={pokeStyles.mainContainer}>
-                
+
                 {
-                    pokemons.map(pokemon=>{
+                    pokemonsFiltered.map(pokemon=>{
                         
                         return (
-                             <div id={pokemon.id} className={pokeStyles.cardsContainer}>
+                             <div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={handleClickCard}>
+                                <img 
+                                    src={pokemon.img ? pokemon.img : "https://i.servimg.com/u/f60/14/90/93/75/pokemo22.png"}
+                                    alt="imagen pokemon"
+                                    className={pokeStyles.cardImg}
+                                />
                                 <p className={pokeStyles.pokeName}>{pokemon.name}</p>
-                                <img src={pokemon.img} alt="" className={pokeStyles.cardImg} />
                                 <div className={pokeStyles.pokeTypesContainer}>
                                 {
-                                    
                                     pokemon.types.map(t=>
-                                    
-
-                                        <p className={pokeStyles.pokeType}>{t.name}</p>
-                                        
-                                        
-                                    )
-                                    
+                                        <p className={`${pokeStyles.pokeType} ${t.name}`}>{t.name}</p>
+                                    ) 
                                 }
                                 </div>                            
-                                
-                                
-                                <div className={pokeStyles.divLink}><Link className={pokeStyles.link} to={"/pokeDetail"}>       <button id={pokemon.id} onClick={(e)=>handleButtonDetails(e)}>Details</button></Link></div>
                                     
                             </div>
-
-                           
 
                         )
                     })
@@ -92,5 +89,3 @@ export default function Pokemons (){
     )
     
 }
-// const mapState = (state) => state.pokemons
-// export default connect(mapState, null)(Pokemons)

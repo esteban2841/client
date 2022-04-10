@@ -2,34 +2,45 @@ import React, { useState } from "react";
 import createCss from "../styles/create.module.css"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
+
 function CreatePokemons() {
 
     const history = useNavigate()
 
-    
-
     const [form, setForm] = useState({
-        name:"",
+        name:"Esteban",
         img:"",
         height:0,
         weight:0,
-        type1:"",
-        type2:"",
+        type1:"poison ",
+        type2:"ice4",
     })
+    const [errors, setErrors] = useState({})
+
+
+
 
     const handleInputChange = (e)=>{
         const value = e.currentTarget.value
-        console.log(value)
         const setState = {...form,[e.currentTarget.name]:value}
-        console.log(setState)
         setForm(setState)
     }
     
     const handleSubmitForm = async (e)=>{
         e.preventDefault()
-        console.log(form)
-        const sendInfo = await axios.post("http://localhost:3001/pokemons",form)
-        history("/home")
+        const validation = (validate(form))
+        
+        if(Object.keys(validation).length > 0){
+            setErrors(validation)
+            console.log(errors)
+
+        }else{
+
+            const sendInfo = await axios.post( "http://localhost:3001/pokemons" , form )
+            history("/home")
+
+        }
+        
     }
     
 
@@ -44,6 +55,7 @@ function CreatePokemons() {
                     value={form.name}
                     handleInputChange={handleInputChange}
                     placeholder='name'
+                    error={errors.name}
                     />
                 <Input 
                     name='img'
@@ -59,31 +71,35 @@ function CreatePokemons() {
                     handleInputChange={handleInputChange}
                     placeholder='height'
                 />
-                <span className={createCss.span}>Weight:</span>
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="number" 
-                name="weight"
-                value={form.weight}
-                placeholder="weight"
+                <Input 
+                    name='weight'
+                    type='number'
+                    value={form.weight}
+                    handleInputChange={handleInputChange}
+                    placeholder='weight'
                 />
-                <span className={createCss.span}>Types:</span>
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="text" 
-                name="type1"
-                value={form.type1}
-                placeholder="type"
+                <Input 
+                    name='type1'
+                    type='number'
+                    value={form.type1}
+                    handleInputChange={handleInputChange}
+                    placeholder='type'
                 />
-                <input 
-                className={createCss.input}
-                onChange={handleInputChange}
-                type="text" 
-                name="type2"
-                value={form.type2}
-                placeholder="type"
+                <Input 
+                    name='type1'
+                    type='text'
+                    value={form.type1}
+                    handleInputChange={handleInputChange}
+                    placeholder='type'
+                    error={errors.type1}
+                />
+                <Input 
+                    name='type2'
+                    type='text'
+                    value={form.type2}
+                    handleInputChange={handleInputChange}
+                    placeholder='type'
+                    error={errors.type2}
                 />
                 <button className={createCss.btn} type="submit"><Link to={"/pokemons"}></Link> Submit</button>
             </form>
@@ -92,7 +108,7 @@ function CreatePokemons() {
 }
 
 
-function Input({type,name,value,placeholder,handleInputChange}){
+function Input({type,name,value,placeholder,handleInputChange, error}){
     
     return(
         <div className={createCss.containerInput}>
@@ -105,8 +121,30 @@ function Input({type,name,value,placeholder,handleInputChange}){
             value={value}
             placeholder={placeholder}
             />
+            <p className='errors'>{ error && error }</p>
         </div>
     )
 }
+
+function validate( form ){
+
+    const errorsToPass = {}
+    const antiNumbers = (string)=> /^[a-z]+$/.test(string) 
+    const antiSpacesCapsNumbersEvaluator = (string)=> /^[a-z][a-z]\S*$/.test(string) && !/([0-9]{1,254})/.test(string) 
+    
+    if( form.name && !antiNumbers(form.name)){
+        errorsToPass.name = "Name must contain only 20 characters and lower case letters"
+    }
+    if( form.type1 && !antiSpacesCapsNumbersEvaluator(form.type1)){
+        errorsToPass.type1 = "Type must contain only lower case letters and no spaces"
+    }
+    if( form.type2 && !antiSpacesCapsNumbersEvaluator(form.type2)){
+        errorsToPass.type2 = "Type must contain only lower case letters and no spaces"
+    }
+    console.log(errorsToPass)
+    return errorsToPass
+}
+
+
 
 export default CreatePokemons;
