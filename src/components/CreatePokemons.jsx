@@ -8,17 +8,17 @@ function CreatePokemons() {
     const history = useNavigate()
 
     const [form, setForm] = useState({
-        name:"Esteban",
+        name:"",
         img:"",
         height:0,
         weight:0,
-        type1:"poison ",
-        type2:"ice4",
+        type1:"",
+        type2:"",
     })
     const [errors, setErrors] = useState({})
 
 
-
+    
 
     const handleInputChange = (e)=>{
         const value = e.currentTarget.value

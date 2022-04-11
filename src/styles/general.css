@@ -13,6 +13,29 @@
 .fire{
     background: #da3324;
 }
+.electric{
+    background: rgb(234, 255, 0);
+    color: rgb(187, 183, 179);
+}
+.ground{
+    background: sandybrown;
+
+}
+.fairy{
+    background: pink;
+}
+.ice{
+    background: rgb(0, 115, 255)
+}
+.bug{
+    background: brown;
+}
+.normal{
+    background: gray;
+}
+.flying{
+    background: #da2470;
+}
 .errors{
     color: red
 }
@@ -45,4 +68,68 @@
     font-size: 17px;
     width: auto;
     margin: auto;
+}
+.pokeDetail {
+    background: #191c1f;
+    min-width: 320px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 18px;
+    border: 1px solid white;
+}
+
+.pokeDetail img{
+    min-width: 300px;
+}
+
+.pokeDetail > button{
+    background: #da2470;
+    border: 1px solid #da2470;
+    border-radius: 5px;
+    margin: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.pokeDetail > button:hover{
+    /* border-radius: ; */
+    background: white;
+    color: #da2470;
+}
+
+.pokeDetail__name{
+    font-size: 20px;
+    text-transform: uppercase;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.pokeDetail__container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    padding-right: 50px ;
+}
+
+.pokeDetail__info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pokeDetail__types{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.pokeDetail__stats{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
 }

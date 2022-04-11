@@ -239,6 +239,8 @@ const filterByStrength = (data,value) => {
 const filterByDataBase = (data,value) => {
     console.log(value)
 
+    if(value === "") return data
+    
     if( value === "CreatedFromAPI"){
         return data.filter(pokemon=> pokemon.createdInDb === false)
     }else if(value === 'CreatedFromDB'){
