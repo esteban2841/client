@@ -12,6 +12,7 @@ import imagePokemon from '../images/pokeball.png'
 import imageTitle from '../images/texto.png'
 import '../styles/general.css'
 import {useNavigate} from 'react-router-dom';
+import FilterByWeight from "./FilterByWeight";
 
 export default function Pokemons (){
     
@@ -39,6 +40,8 @@ export default function Pokemons (){
     }
 
 
+    
+
     return(
         <div>
             <header className={pokeStyles.header}>
@@ -52,6 +55,7 @@ export default function Pokemons (){
                     <div>Filter:<TypeFilter className={pokeStyles.cFiltro}/></div>
                     <div>Filter:<StrengthFilter className={pokeStyles.cFiltro}/></div>
                     <div>Filter:<CreationFilter className={pokeStyles.cFiltro}/></div>
+                    <div>Filter:<FilterByWeight/></div>
                     <button className="buttonCreate" onClick={handleClickCreate}>Create pokemon</button>
                 </div>
             </header>
@@ -59,28 +63,29 @@ export default function Pokemons (){
             <div className={pokeStyles.mainContainer}>
 
                 {
-                    pokemonsFiltered.map(pokemon=>{
+                    pokemonsFiltered.map(pokemon=>
                         
-                        return (
-                             <div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={handleClickCard}>
-                                <img 
-                                    src={pokemon.img ? pokemon.img : "https://i.servimg.com/u/f60/14/90/93/75/pokemo22.png"}
-                                    alt="imagen pokemon"
-                                    className={pokeStyles.cardImg}
-                                />
-                                <p className={pokeStyles.pokeName}>{pokemon.name}</p>
-                                <div className={pokeStyles.pokeTypesContainer}>
-                                {
-                                    pokemon.types.map(t=>
-                                        <p className={`${pokeStyles.pokeType} ${t.name}`}>{t.name}</p>
+                       
+                        (<div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={handleClickCard}>
+                            <img 
+                                src={pokemon.img || "https://i.servimg.com/u/f60/14/90/93/75/pokemo22.png"}
+                                alt="imagen pokemon"
+                                className={pokeStyles.cardImg}
+                            />
+                            <p className={pokeStyles.pokeName}>{pokemon.name}</p>
+                            <p> CreatedInDb: {pokemon.createdInDb.toString()} </p>  
+                            <div className={pokeStyles.pokeTypesContainer}>
+                            {
+                                pokemon.types.map(t=>
+                                    <p className={`${pokeStyles.pokeType} ${t.name}`}>{t.name}</p>
                                     ) 
-                                }
-                                </div>                            
-                                    
-                            </div>
+                            }
+                            </div>  
+                                                    
+                        </div>)
 
-                        )
-                    })
+                        
+                    )
                 }
                 
             </div>

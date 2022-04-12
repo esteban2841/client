@@ -119,14 +119,25 @@ export const pokeDetail =  (id) => async dispatch => {
 export const getTypes =  () => async dispatch => {
     
     const urlTypes =  "http://localhost:3001/types"
-    const res = await fetch(urlTypes)
-    const types = await res.json()
 
-    return (
+    new Promise((resolve,reject)=>{
+
+       fetch(urlTypes)
+       .then(res=>res.json())
+       .then(data=>resolve(data))
+    })
+    .then(data=> {
+        console.log(data,"BUG")
         dispatch({
-            type : GET_TYPES,
-            payload : types
-        }))
+        type : GET_TYPES,
+        payload : data
+        })}
+        
+    )
+    // const res = await fetch(urlTypes)
+    // const types = await res.json()
+
+    
 };
 
 export const changeFilter = (type,value) => async (dispatch,getState) =>{
@@ -139,10 +150,11 @@ export const changeFilter = (type,value) => async (dispatch,getState) =>{
         }
     })
 
+    const pokemonsFiltered = applyFilters(getState)
     
     dispatch({
         type: PAGINATION,
-        payload: applyFilters(getState)
+        payload: pokemonsFiltered
     })
 
 }
@@ -153,12 +165,12 @@ const applyFilters = (getState)=>{
     let { pokemons : data, filters, pagination : page } = getState()
 
     let pokemones = [...data]
-
+    
     pokemones = filterByStrength(pokemones, filters.strength)
     pokemones = filterByType(pokemones,filters.type)
     pokemones = filterByText(pokemones,filters.texto)
     pokemones = filterByDataBase(pokemones,filters.creation)
-
+    pokemones = filterByWeight(pokemones, filters.weight)
     let quantityPerPage = 12
     
     const inicio = (page-1) * quantityPerPage
@@ -171,6 +183,14 @@ const applyFilters = (getState)=>{
 }
 
 //filtros independientes
+
+const filterByWeight = (data, value)=>{
+    if(value === 0)return data
+    console.log(value,"BUG FILTRO NUEVO")
+    const pokeFiltered = [...data].filter( p => p.weight > value )
+    console.log(pokeFiltered,"objeto filtrado por peso")
+    return pokeFiltered
+}
 const filterByText = (data,value) =>{
     
     if(value === "A-Z"){
@@ -249,3 +269,4 @@ const filterByDataBase = (data,value) => {
         return data
     }
 }
+
