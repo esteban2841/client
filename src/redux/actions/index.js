@@ -15,7 +15,7 @@ export const CREATION_FILTER = "STRENGTH_FILTER"
 export const CHANGE_FILTER = 'CHANGE_FILTER'
 export const NEW_PAGE = "NEW_PAGE"
 
-let urlPokemons=  "http://localhost:3001/pokemons/"
+let urlPokemons= process.env.REACT_APP_API_URL + "pokemons" 
 
 
 export const getAllPokemons =   () => async (dispatch, getState) => {
@@ -118,7 +118,7 @@ export const pokeDetail =  (id) => async dispatch => {
 
 export const getTypes =  () => async dispatch => {
     
-    const urlTypes =  "http://localhost:3001/types"
+    const urlTypes =  process.env.REACT_APP_API_URL + "types"
     const res = await fetch(urlTypes)
     const types = await res.json()
 

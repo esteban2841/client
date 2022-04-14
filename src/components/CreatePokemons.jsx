@@ -39,7 +39,7 @@ function CreatePokemons() {
 
         }else{
 
-            const sendInfo = await axios.post( "http://localhost:3001/pokemons" , form )
+            const sendInfo = await axios.post( process.env.REACT_APP_API_URL + "pokemons" , form )
             history("/home")
 
         }
