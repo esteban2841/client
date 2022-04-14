@@ -129,6 +129,8 @@ export const getTypes =  () => async dispatch => {
         }))
 };
 
+
+
 export const changeFilter = (type,value) => async (dispatch,getState) =>{
 
     dispatch({
@@ -172,7 +174,7 @@ const applyFilters = (getState)=>{
 
 //filtros independientes
 const filterByText = (data,value) =>{
-    
+    if(value === "")return data
     if(value === "A-Z"){
        return [...data].sort((a,b) => {
             if(a.name > b.name){
@@ -218,7 +220,7 @@ const filterByStrength = (data,value) => {
     const findStrength = (stats, stat) => stats.find(s=> s.name === stat)
 
     return [...data].sort( (a,b) => {
-
+        
         const valueA = findStrength(a.stats, "attack").value
         const valueB = findStrength(b.stats, "attack").value
 

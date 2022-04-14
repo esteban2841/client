@@ -8,6 +8,7 @@ function CreatePokemons() {
     const history = useNavigate()
 
     const [form, setForm] = useState({
+        proof:"",
         name:"",
         img:"",
         height:0,
@@ -23,6 +24,8 @@ function CreatePokemons() {
     const handleInputChange = (e)=>{
         const value = e.currentTarget.value
         const setState = {...form,[e.currentTarget.name]:value}
+        const validation = validate(form)
+        setErrors(validation)
         setForm(setState)
     }
     
@@ -49,6 +52,12 @@ function CreatePokemons() {
             <form action="" 
             className={createCss.form}
             onSubmit={handleSubmitForm}>
+                <Input type="text" 
+                name="proof"
+                value={form.proof}
+                handleInputChange={handleInputChange}
+                error={errors.proof}/>
+                
                 <Input 
                     name='name'
                     type='text'
@@ -78,13 +87,7 @@ function CreatePokemons() {
                     handleInputChange={handleInputChange}
                     placeholder='weight'
                 />
-                <Input 
-                    name='type1'
-                    type='number'
-                    value={form.type1}
-                    handleInputChange={handleInputChange}
-                    placeholder='type'
-                />
+              
                 <Input 
                     name='type1'
                     type='text'
@@ -101,6 +104,7 @@ function CreatePokemons() {
                     placeholder='type'
                     error={errors.type2}
                 />
+                
                 <button className={createCss.btn} type="submit"><Link to={"/pokemons"}></Link> Submit</button>
             </form>
         </div>
@@ -140,6 +144,9 @@ function validate( form ){
     }
     if( form.type2 && !antiSpacesCapsNumbersEvaluator(form.type2)){
         errorsToPass.type2 = "Type must contain only lower case letters and no spaces"
+    }
+    if(form.proof && !antiNumbers(form.proof)){
+        errorsToPass.proof="Name must contain only 20 characters and lower case letters"
     }
     console.log(errorsToPass)
     return errorsToPass

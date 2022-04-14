@@ -10,12 +10,10 @@ function Pagination() {
     
     const totalPokemons = pokemons
     const page = pagination
-    const totalPokeQuantity = totalPokemons.length - 1
+    const totalPokeQuantity = totalPokemons.length
     const quantityPerPage = 12
     const maxPage = Math.ceil(totalPokeQuantity / quantityPerPage)
     
-    console.log(page)
-    console.log(maxPage)
 
 
     function handlePaginationNext(){
@@ -38,11 +36,11 @@ function Pagination() {
         <div className='pagination'>
             <div>
                 <div>Prev</div>
-                <button id="btnprev" onClick={handlePaginationPrev}>{"<"}</button>
+                <button onClick={handlePaginationPrev}>{"<"}</button>
             </div>
             <div>{page}</div>
             <div>
-                <button id="btnNext" onClick={handlePaginationNext}>{">"}</button>
+                <button onClick={handlePaginationNext}>{">"}</button>
                 <div>Next</div>
             </div>
         </div>
