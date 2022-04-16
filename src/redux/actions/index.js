@@ -39,7 +39,7 @@ export const getAllPokemons =   () => async (dispatch, getState) => {
         type : LOADER_POKEMONS,
         payload : false
     })
-
+    
     //SETEAMOS TODOS LOS POKEMONES
     dispatch({
             type : GET_ALL_POKEMONS,
