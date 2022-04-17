@@ -13,7 +13,17 @@ function PokeDetails() {
     const poke = pokemon[0] || {}
 
     if(loader){
-        return <h1>Is loading...</h1>
+        return <div class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     }
 
     const handleBack = () => navigate('/home')

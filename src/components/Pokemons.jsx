@@ -36,7 +36,19 @@ export default function Pokemons (){
     }
 
     if(loader){
-        return <h1>Is loading...</h1>
+        return (
+        <div class="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+      )
     }
     
 
