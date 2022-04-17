@@ -35,7 +35,6 @@ function CreatePokemons() {
         
         if(Object.keys(validation).length > 0){
             setErrors(validation)
-            console.log(errors)
 
         }else{
 
@@ -52,12 +51,6 @@ function CreatePokemons() {
             <form action="" 
             className={createCss.form}
             onSubmit={handleSubmitForm}>
-                <Input type="text" 
-                name="proof"
-                value={form.proof}
-                handleInputChange={handleInputChange}
-                error={errors.proof}/>
-                
                 <Input 
                     name='name'
                     type='text'
@@ -145,10 +138,6 @@ function validate( form ){
     if( form.type2 && !antiSpacesCapsNumbersEvaluator(form.type2)){
         errorsToPass.type2 = "Type must contain only lower case letters and no spaces"
     }
-    if(form.proof && !antiNumbers(form.proof)){
-        errorsToPass.proof="Name must contain only 20 characters and lower case letters"
-    }
-    console.log(errorsToPass)
     return errorsToPass
 }
 
