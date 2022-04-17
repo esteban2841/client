@@ -33,11 +33,12 @@ const rootReducer = (state = initialState, action) => {
     
     switch(action.type) {
         case GET_ALL_POKEMONS :
-            console.log(action.payload)
             return { ...state, pokemons : action.payload }
         case GET_POKEMON :
             return { ...state, pokemonsFiltered : action.payload }
         case POKE_DETAIL:
+            console.log(action.payload)
+            
             return {...state, pokemon: action.payload}
         case PAGINATION:
             return { ...state, pokemonsFiltered : action.payload }

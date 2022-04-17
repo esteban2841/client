@@ -26,8 +26,9 @@ export default function Pokemons (){
     
     function handleClickCard(e){
         const id = e.currentTarget.id
+        console.log(id)
         dispatch(pokeDetail(id))
-        navigate('/pokedetail')
+        navigate('/pokeDetail')
     }
 
     function handleClickCreate(){
@@ -62,7 +63,7 @@ export default function Pokemons (){
                     pokemonsFiltered.map(pokemon=>{
                         
                         return (
-                             <div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={handleClickCard}>
+                             <div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={(e)=>handleClickCard(e)}>
                                 <img 
                                     src={pokemon.img ? pokemon.img : "https://i.servimg.com/u/f60/14/90/93/75/pokemo22.png"}
                                     alt="imagen pokemon"

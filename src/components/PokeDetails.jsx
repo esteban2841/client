@@ -5,7 +5,7 @@ import "../styles/general.css"
 import pokeStyles from "../styles/general.css"
 
 
-function PokeDetails(id) {
+function PokeDetails() {
     
     const {pokemon, loader} = useSelector(state=>({pokemon: state.pokemon, loader: state.pokemonIsLoading}))
     const navigate = useNavigate()
@@ -28,7 +28,7 @@ function PokeDetails(id) {
                     
                     <div className='pokeDetail__container' id={poke.id}>
     
-                        <img src={poke.img} alt=""/>
+                        <img src={poke.img} alt="File not found"/>
 
                         <div className='pokeDetail__info'>
                             <p className='pokeDetail__name'>{poke.name}</p>

@@ -10,7 +10,6 @@ function TypeFilter() {
     },[])
 
     const types = useSelector(state=> state.types)
-    console.log(types)
     function handleChange(e){
         dispatch(changeFilter('type',e.target.value))
     }

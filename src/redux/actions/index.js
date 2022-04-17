@@ -15,7 +15,7 @@ export const CREATION_FILTER = "STRENGTH_FILTER"
 export const CHANGE_FILTER = 'CHANGE_FILTER'
 export const NEW_PAGE = "NEW_PAGE"
 
-let urlPokemons= process.env.REACT_APP_API_URL + "pokemons" 
+let urlPokemons= "https://pokemon-api-2841.herokuapp.com/pokemons"
 
 
 export const getAllPokemons =   () => async (dispatch, getState) => {
@@ -91,7 +91,7 @@ export const creationTypeFilter =  (objSort) => async dispatch => {
 
 export const pokeDetail =  (id) => async dispatch => {
     
-    console.log('no se')
+    console.log('no se', id)
     dispatch({
         type : POKE_DETAIL,
         payload : []
@@ -100,7 +100,7 @@ export const pokeDetail =  (id) => async dispatch => {
         type : LOADER_POKEMON,
         payload : true
     })
-    const urlDetail = urlPokemons + id;
+    const urlDetail = urlPokemons +"/"+ id;
     const pokemones = await fetch(urlDetail)
     const res = await pokemones.json()
     
@@ -118,7 +118,7 @@ export const pokeDetail =  (id) => async dispatch => {
 
 export const getTypes =  () => async dispatch => {
     
-    const urlTypes =  process.env.REACT_APP_API_URL + "types"
+    const urlTypes =  "https://pokemon-api-2841.herokuapp.com/types"
     const res = await fetch(urlTypes)
     const types = await res.json()
 
@@ -167,7 +167,6 @@ const applyFilters = (getState)=>{
     const fin = page * quantityPerPage
     
     pokemones = pokemones.slice(inicio,fin)
-    console.log({pokemones,inicio, fin})
 
     return pokemones
 }
