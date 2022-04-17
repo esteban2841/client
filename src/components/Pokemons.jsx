@@ -26,7 +26,6 @@ export default function Pokemons (){
     
     function handleClickCard(e){
         const id = e.currentTarget.id
-        console.log(id)
         dispatch(pokeDetail(id))
         navigate('/pokeDetail')
     }

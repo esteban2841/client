@@ -37,7 +37,6 @@ const rootReducer = (state = initialState, action) => {
         case GET_POKEMON :
             return { ...state, pokemonsFiltered : action.payload }
         case POKE_DETAIL:
-            console.log(action.payload)
             
             return {...state, pokemon: action.payload}
         case PAGINATION:

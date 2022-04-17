@@ -91,7 +91,6 @@ export const creationTypeFilter =  (objSort) => async dispatch => {
 
 export const pokeDetail =  (id) => async dispatch => {
     
-    console.log('no se', id)
     dispatch({
         type : POKE_DETAIL,
         payload : []
@@ -215,7 +214,6 @@ const filterByType = (data,value) => {
 const filterByStrength = (data,value) => {
 
     if(value === "") return data
-    console.log(value)
     const findStrength = (stats, stat) => stats.find(s=> s.name === stat)
 
     return [...data].sort( (a,b) => {
@@ -238,7 +236,6 @@ const filterByStrength = (data,value) => {
 }
 
 const filterByDataBase = (data,value) => {
-    console.log(value)
 
     if(value === "") return data
     
