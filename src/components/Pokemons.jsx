@@ -1,5 +1,5 @@
 import React, { useEffect} from "react";
-import { getAllPokemons, pokeDetail } from '../../src/redux/actions/index';
+import { getAllPokemons, pokeDelete, pokeDetail } from '../../src/redux/actions/index';
 import { useDispatch, useSelector } from 'react-redux'
 import pokeStyles from "../styles/pokemons.module.css"
 import SearchBar from "./SearchBar";
@@ -12,6 +12,8 @@ import imagePokemon from '../images/pokeball.png'
 import imageTitle from '../images/texto.png'
 import '../styles/general.css'
 import {useNavigate} from 'react-router-dom';
+import { IoBackspaceSharp } from "react-icons/io5"
+
 
 export default function Pokemons (){
     
@@ -29,6 +31,15 @@ export default function Pokemons (){
         dispatch(pokeDetail(id))
         navigate('/pokeDetail')
     }
+
+
+    function handleDelete(e){
+        const id = e.currentTarget.id
+        console.log(id)
+        dispatch(pokeDelete(id))
+        
+    }
+
 
     function handleClickCreate(){
         navigate('/create')
@@ -74,7 +85,9 @@ export default function Pokemons (){
                     pokemonsFiltered.map(pokemon=>{
                         
                         return (
-                             <div id={pokemon.id} className={pokeStyles.cardsContainer} onClick={(e)=>handleClickCard(e)}>
+                             <div id={pokemon.id} className={pokeStyles.cardsContainer}>
+                                <button id={pokemon.id} className="delete-btn" onClick={(e)=>handleDelete(e)}><IoBackspaceSharp className="delete-icon"/></button>
+                               
                                 <img 
                                     src={pokemon.img ? pokemon.img : "https://i.servimg.com/u/f60/14/90/93/75/pokemo22.png"}
                                     alt="imagen pokemon"
@@ -85,10 +98,11 @@ export default function Pokemons (){
                                 {
                                     pokemon.types.map(t=>
                                         <p className={`${pokeStyles.pokeType} ${t.name}`}>{t.name}</p>
-                                    ) 
+                                        ) 
                                 }
+                                <button className="details-btn" onClick={(e)=>handleClickCard(e)}>Details</button>
                                 </div>                            
-                                    
+                                
                             </div>
 
                         )

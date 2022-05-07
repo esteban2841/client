@@ -113,7 +113,8 @@ button{
 }
 
 .cardsContainer:hover .cardImg{
-    transform: scale(1.25) translateY(-30px);
+    /* transform: scale(1.25) translateY(-30px); */
+    box-shadow: 0 0 10px, 0 0 50px, 0 0 100px #aeb5bb4f;
 }   
 
 .pokeName{

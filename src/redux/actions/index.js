@@ -114,6 +114,27 @@ export const pokeDetail =  (id) => async dispatch => {
     })
         
 };
+export const pokeDelete =  (id) => async (dispatch, getState) => {
+    
+        
+    const urlDelete = urlPokemons +"/"+ id;
+    const pokemones = await axios.delete(urlDelete)
+    
+    const pokemonesToFetch = await axios(urlPokemons)
+    
+    //SETEAMOS TODOS LOS POKEMONES
+    dispatch({
+            type : GET_ALL_POKEMONS,
+            payload : pokemonesToFetch.data
+    })
+
+    //EJECUTAMOS EL FILTRO CON TODOS LOS POKEMONES
+    dispatch({
+        type: PAGINATION,
+        payload: applyFilters(getState)
+    })
+        
+};
 
 export const getTypes =  () => async dispatch => {
     

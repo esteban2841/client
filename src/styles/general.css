@@ -273,3 +273,31 @@
     gap: 20px;
     align-items: center;
   }
+  .delete-btn{
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+    border-style: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+  .delete-icon{
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    color: #ed5564;
+  }
+  .details-btn{
+    
+    border-radius: 5px;
+    font-size: 15px;
+    border-style: none;
+    color: rgba(255, 255, 255, 0.747);
+    background-color: rgb(40, 45, 51);
+  }
