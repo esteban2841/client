@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import landingImage from "../../src/Assets/PokemonsLanding.png"
+import pokeball from "../../src/Assets/pokeBall.png"
 
 // const landingImage = require("../Assets/LandingImage.png")
 
@@ -24,13 +25,19 @@ const LandingContainer = styled.div`
 `
 
 export default function LandingPage (){
-
-
-
+    const navigate = useNavigate()
+    const [isOpen, setIsOpen] = useState(false)
+    function navigateHome (){
+        navigate("/home")
+    }
+    console.log(isOpen)
     return (
         <LandingContainer className="landing">
             <h1>Welcome to the pokemons' world</h1>
-            <button><Link to={"/home"}>ENTER</Link></button>
+            <img src={isOpen? pokeball : pokeball } alt=""/>
+            <button onClick={()=>{
+                setIsOpen(true)
+            }}>ENTER¿</button>
         </LandingContainer>
     )
 
